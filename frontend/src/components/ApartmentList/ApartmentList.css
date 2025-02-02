@@ -1,0 +1,38 @@
+.card-container {
+	margin-top: 25px;
+	display: flex;
+	gap: 20px;
+}
+
+.card {
+	background-color: #31473A;
+	color: #EDF4F2;
+	width: 200px;
+	padding: 15px 8px;
+	gap: 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.card-btn-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.card-btn {
+	background-color: #EDF4F2;
+	color: #31473A;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.card-btn:hover {
+	background-color: #548367;
+	color: #EDF4F2;
+}

@@ -1,0 +1,46 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+}
+
+.form > input {
+	color: #EDF4F2;
+	background-color: #31473A;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+}
+
+.form > input::placeholder {
+	color: #EDF4F2;
+}
+
+.form > input:focus {
+	outline: solid 2px #4f9984;
+}
+
+.form > select {
+	color: #EDF4F2;
+	background-color: #31473A;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+}
+
+.form > button {
+	background-color: #31473A;
+	color: #EDF4F2;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.form > button:hover {
+	background-color: #548367;
+	color: #EDF4F2;
+}
