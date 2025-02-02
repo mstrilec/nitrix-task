@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000/api/apartments'
+const API_URL = 'https://nitrix-task.onrender.com/api/apartments'
 
 export const fetchApartments = createAsyncThunk(
 	'apartments/fetchApartments',
