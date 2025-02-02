@@ -5,7 +5,14 @@ const cors = require('cors')
 const apartmentRoutes = require('./routes/apartments')
 
 const app = express()
-app.use(cors())
+
+const corsOptions = {
+	origin: 'https://nitrix-task.vercel.app',
+	methods: 'GET,POST,PUT,DELETE',
+	allowedHeaders: 'Content-Type,Authorization',
+}
+
+app.use(cors(corsOptions))
 app.use(express.json())
 
 const PORT = process.env.PORT || 5000
