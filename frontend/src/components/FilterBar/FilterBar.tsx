@@ -1,10 +1,21 @@
 import { useState } from 'react'
 import './FilterBar.css'
 
-const FilterBar = ({ onFilter }) => {
+interface FilterBarProps {
+	onFilter: (filters: { price: string; rooms: string }) => void
+}
+
+const FilterBar = ({ onFilter }: FilterBarProps) => {
 	const [filters, setFilters] = useState({ price: '', rooms: '' })
 
-	const handleChange = e => {
+	interface FilterChangeEvent {
+		target: {
+			name: string
+			value: string
+		}
+	}
+
+	const handleChange = (e: FilterChangeEvent) => {
 		setFilters({ ...filters, [e.target.name]: e.target.value })
 	}
 

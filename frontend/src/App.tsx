@@ -1,10 +1,13 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './App.css'
-import ApartmentForm from './components/ApartmentForm/ApartmentForm'
-import ApartmentList from './components/ApartmentList/ApartmentList'
-import FilterBar from './components/FilterBar/FilterBar'
-import Modal from './components/Modal/Modal'
+import ApartmentForm from './components/ApartmentForm/ApartmentForm.tsx'
+import ApartmentList from './components/ApartmentList/ApartmentList.tsx'
+import FilterBar from './components/FilterBar/FilterBar.tsx'
+import Modal from './components/Modal/Modal.tsx'
 import {
 	addApartment,
 	deleteApartment,
@@ -15,9 +18,7 @@ import {
 
 const App = () => {
 	const dispatch = useDispatch()
-	const { apartments, filteredApartments } = useSelector(
-		state => state.apartments
-	)
+	const { filteredApartments } = useSelector(state => state.apartments)
 	const [selectedApartment, setSelectedApartment] = useState(null)
 	const [isModalOpen, setIsModalOpen] = useState(false)
 

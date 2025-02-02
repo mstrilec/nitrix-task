@@ -1,7 +1,22 @@
 import { useEffect, useState } from 'react'
 import './ApartmentForm.css'
 
-const ApartmentForm = ({ onSubmit, apartment }) => {
+interface Apartment {
+	title: string
+	description: string
+	price: string
+	rooms: string
+}
+
+interface ApartmentFormProps {
+	onSubmit: (formData: Apartment) => void
+	apartment?: Apartment
+}
+
+const ApartmentForm: React.FC<ApartmentFormProps> = ({
+	onSubmit,
+	apartment,
+}) => {
 	const [formData, setFormData] = useState({
 		title: '',
 		description: '',
@@ -13,7 +28,9 @@ const ApartmentForm = ({ onSubmit, apartment }) => {
 		if (apartment) setFormData(apartment)
 	}, [apartment])
 
-	const handleChange = e => {
+	const handleChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+	) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value })
 	}
 

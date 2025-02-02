@@ -1,6 +1,22 @@
 import './ApartmentList.css'
 
-const ApartmentList = ({ apartments, onEdit, onDelete }) => (
+interface Apartment {
+	_id: string
+	title: string
+	description: string
+	price: number
+	rooms: number
+}
+
+const ApartmentList = ({
+	apartments,
+	onEdit,
+	onDelete,
+}: {
+	apartments: Apartment[]
+	onEdit: (apartment: Apartment) => void
+	onDelete: (id: string) => void
+}) => (
 	<div className='card-container'>
 		{apartments.map(apartment => (
 			<div className='card' key={apartment._id}>

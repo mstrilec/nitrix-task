@@ -13,7 +13,12 @@ export const fetchApartments = createAsyncThunk(
 
 export const addApartment = createAsyncThunk(
 	'apartments/addApartment',
-	async apartment => {
+	async (apartment: {
+		_id: string
+		name: string
+		price: number
+		rooms: number
+	}) => {
 		const response = await axios.post(API_URL, apartment)
 		return response.data
 	}
@@ -21,7 +26,12 @@ export const addApartment = createAsyncThunk(
 
 export const updateApartment = createAsyncThunk(
 	'apartments/updateApartment',
-	async apartment => {
+	async (apartment: {
+		_id: string
+		name: string
+		price: number
+		rooms: number
+	}) => {
 		const response = await axios.put(`${API_URL}/${apartment._id}`, apartment)
 		return response.data
 	}
@@ -29,7 +39,7 @@ export const updateApartment = createAsyncThunk(
 
 export const deleteApartment = createAsyncThunk(
 	'apartments/deleteApartment',
-	async id => {
+	async (id: string) => {
 		await axios.delete(`${API_URL}/${id}`)
 		return id
 	}
@@ -38,19 +48,36 @@ export const deleteApartment = createAsyncThunk(
 const apartmentSlice = createSlice({
 	name: 'apartments',
 	initialState: {
-		apartments: [],
-		filteredApartments: [],
+		apartments: [] as {
+			_id: string
+			name: string
+			price: number
+			rooms: number
+		}[],
+		filteredApartments: [] as {
+			_id: string
+			name: string
+			price: number
+			rooms: number
+		}[],
 		status: 'idle',
-		error: null,
+		error: null as string | null,
 	},
 	reducers: {
 		filterApartments(state, action) {
 			const { price, rooms } = action.payload
-			state.filteredApartments = state.apartments.filter(apartment => {
-				const isPriceMatch = price ? apartment.price <= price : true
-				const isRoomsMatch = rooms ? apartment.rooms === Number(rooms) : true
-				return isPriceMatch && isRoomsMatch
-			})
+			state.filteredApartments = state.apartments.filter(
+				(apartment: {
+					_id: string
+					name: string
+					price: number
+					rooms: number
+				}) => {
+					const isPriceMatch = price ? apartment.price <= price : true
+					const isRoomsMatch = rooms ? apartment.rooms === Number(rooms) : true
+					return isPriceMatch && isRoomsMatch
+				}
+			)
 		},
 	},
 	extraReducers: builder => {
@@ -65,7 +92,7 @@ const apartmentSlice = createSlice({
 			})
 			.addCase(fetchApartments.rejected, (state, action) => {
 				state.status = 'failed'
-				state.error = action.error.message
+				state.error = action.error.message ?? 'Unknown error'
 			})
 			.addCase(addApartment.fulfilled, (state, action) => {
 				state.apartments.push(action.payload)

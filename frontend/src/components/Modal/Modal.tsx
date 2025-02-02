@@ -1,6 +1,13 @@
 import './Modal.css'
 
-const Modal = ({ children, onClose }) => {
+import { MouseEventHandler, ReactNode } from 'react'
+
+interface ModalProps {
+	children: ReactNode
+	onClose: MouseEventHandler<HTMLDivElement | HTMLButtonElement>
+}
+
+const Modal = ({ children, onClose }: ModalProps) => {
 	return (
 		<div className='modal-overlay' onClick={onClose}>
 			<div className='modal-content' onClick={e => e.stopPropagation()}>
